@@ -37,8 +37,8 @@ Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, o
 **Design 2D Circuit Schematic on Altium software**
 ![image](Media/2D.jpg)
 
-**System-Aquarium**
+**System Model**
 ![image](Media/System.jpg)
 
-**System-Aquarium**
+**use-case-diagram**
 ![image](usecasediagram.jpg)
