@@ -6,8 +6,11 @@ The system integrates sensors and devices to monitor and control the aquarium en
 
 - Sensors and controls:
 DS18B20 temperature sensor: Measures water temperature, controls the heating lamp according to the threshold:
+
 Temperature < 30°C: PWM heating lamp = 255 (strong).
+
 30°C ≤ Temperature < 32°C: PWM = 100 (medium).
+
 Temperature ≥ 32°C: PWM = 0 (off).
 
 - Turbidity sensor: Measures water clarity, controls the filter motor:
