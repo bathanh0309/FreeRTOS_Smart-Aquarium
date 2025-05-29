@@ -40,10 +40,10 @@ Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, o
 **System Model**
 ![image](Media/System.jpg)
 
-
+**App-RainMaker**
 https://github.com/user-attachments/assets/afabf5fa-f88d-4a85-839b-8f9cc426c269
 
-
+**Oled**
 https://github.com/user-attachments/assets/8d7514b6-308d-45bb-afe0-62e412b6e779
 
 **use-case-diagram**
