@@ -30,5 +30,5 @@ PWM: Update status every time the button is pressed once: OFF => medium level =>
 
 ## Quick View of the Project
 
-**Circuit simulation on Proteus software**
+**Design Circuit Schematic on Altium software**
 ![image](Media/Schematic.jpg)
