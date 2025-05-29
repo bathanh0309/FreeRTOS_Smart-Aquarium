@@ -42,3 +42,6 @@ Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, o
 
 **use-case-diagram**
 ![image](usecasediagram.jpg)
+
+**use-case-diagram**
+![image](Media/app.mp4)
