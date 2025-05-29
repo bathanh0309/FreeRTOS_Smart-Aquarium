@@ -27,3 +27,8 @@ PWM Timer Sensor DS3231
 MANUAL (user controls directly via push button)
 
 PWM: Update status every time the button is pressed once: OFF => medium level => high level => OFF
+
+## Quick View of the Project
+
+**Circuit simulation on Proteus software**
+![image](Media/Schematic.jpg)
