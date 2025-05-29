@@ -1,32 +1,39 @@
 # FreeRTOS
-
 ## Introduction
-FreeRTOS is an open source, lightweight real-time operating system designed to manage tasks on microcontrollers and embedded systems. The project takes advantage of FreeRTOS features such as multitasking, queuing, and interrupts to manage tasks such as:
-- Sensor reading: The SensorTask task continuously collects water temperature and clarity data from the DS18B20 sensor and clarity sensor, sending the data via queue for processing.
-- Device Control: The ControlTask ​​handles automatic or manual control logic for the filter motor, heater, and feeder motor, based on sensor data and pushbutton commands.
-- Display and Monitoring: The DisplayTask updates the OLED interface with time, device status, and sensor data, while the SerialPrintTask prints information via Serial for monitoring.
+The "Smart Aquarium System" is an aquarium automation solution, using FreeRTOS to coordinate tasks on the microcontroller.
+
+The system integrates sensors and devices to monitor and control the aquarium environment, with the following main features:
+
+- Sensors and controls:
+DS18B20 temperature sensor: Measures water temperature, controls the heating lamp according to the threshold:
+Temperature < 30°C: PWM heating lamp = 255 (strong).
+30°C ≤ Temperature < 32°C: PWM = 100 (medium).
+Temperature ≥ 32°C: PWM = 0 (off).
+
+- Turbidity sensor: Measures water clarity, controls the filter motor:
+Turbidity > 3000: PWM = 0 (off).
+2000 < Turbidity ≤ 3000: PWM = 100 (medium).
+Turbidity ≤ 2000: PWM = 255 (strong).
+
+- RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds at 11:00 every day, not repeating on the same day.
+
+Operation mode:
+Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
+
+Manual (MANUAL): User controls directly via push button, switches device status (OFF → WEAK → STRONG → OFF).
 ## How the System Works
 ### System Overview:
-The system supports two modes: AUTO & MANUAL
+FreeRTOS:
+SensorTask: Reads sensor data every 500ms, sends via queue.
 
-AUTO (automatically adjusts filtration and heating based on sensor thresholds and automatically feeds fish at set times)
+ControlTask: Processes control logic, receives commands from push button via interrupt and queue.
+DisplayTask: Display information (time, temperature, turbidity, status) on OLED every 200ms.
 
-PWM: Turbidity Sensor
--  (3000 < sensor) PWM = 0: filter motor OFF
--  (2000 < sensor < 3000) PWM = 100: medium filter motor
--  (sensor < 2000) PWM = 255 high filter motor
+SerialPrintTask: Print information via Serial for monitoring every 1 second.
 
-PWM Water Temperature Sensor DS18B20
--  (32 < sensor) PWM = 0: heater motor OFF
--  (30 < sensor < 32) PWM = 100: medium heater motor
--  (sensor < 30) PWM = 0: high heater motor
+RainMaker App
 
-PWM Timer Sensor DS3231
--  Setup 11h: PWM = 25: feeding motor rotates in 5s
-  
-MANUAL (user controls directly via push button)
-
-PWM: Update status every time the button is pressed once: OFF => medium level => high level => OFF
+Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, or activate feeding via the RainMaker app on iOS/Android.
 
 ## Quick View of the Project
 
