@@ -25,4 +25,5 @@ PWM Timer Sensor DS3231
 -  Setup 11h: PWM = 25: feeding motor rotates in 5s
   
 MANUAL (user controls directly via push button)
+
 PWM: Update status every time the button is pressed once: OFF => medium level => high level => OFF
