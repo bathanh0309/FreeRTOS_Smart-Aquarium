@@ -4,21 +4,17 @@ The "Smart Aquarium System" is an aquarium automation solution, using FreeRTOS t
 
 The system integrates sensors and devices to monitor and control the aquarium environment, with the following main features:
 
-- Sensors and controls:
 DS18B20 temperature sensor: Measures water temperature, controls the heating lamp according to the threshold:
+- Temperature < 30°C: PWM heating lamp = 255 (strong).
+- 30°C ≤ Temperature < 32°C: PWM = 100 (medium).
+- Temperature ≥ 32°C: PWM = 0 (off).
 
-Temperature < 30°C: PWM heating lamp = 255 (strong).
+Turbidity sensor: Measures water clarity, controls the filter motor:
+- Turbidity > 3000: PWM = 0 (off).
+- 2000 < Turbidity ≤ 3000: PWM = 100 (medium).
+- Turbidity ≤ 2000: PWM = 255 (strong).
 
-30°C ≤ Temperature < 32°C: PWM = 100 (medium).
-
-Temperature ≥ 32°C: PWM = 0 (off).
-
-- Turbidity sensor: Measures water clarity, controls the filter motor:
-Turbidity > 3000: PWM = 0 (off).
-2000 < Turbidity ≤ 3000: PWM = 100 (medium).
-Turbidity ≤ 2000: PWM = 255 (strong).
-
-- RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds at 11:00 every day, not repeating on the same day.
+RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds at 11:00 every day, not repeating on the same day.
 
 Operation mode:
 Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
