@@ -40,13 +40,16 @@ Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, o
 **System Model**
 ![image](Media/System.jpg)
 
+
+https://github.com/user-attachments/assets/afabf5fa-f88d-4a85-839b-8f9cc426c269
+
+
+https://github.com/user-attachments/assets/8d7514b6-308d-45bb-afe0-62e412b6e779
+
 **use-case-diagram**
 ![image](usecasediagram.jpg)
 
 
 
-https://github.com/user-attachments/assets/ab3f4465-63c1-4ee6-be89-6d4db520875a 
-
-https://github.com/user-attachments/assets/3408003b-66a1-4e0f-9eae-0ced117c43fe
 
 
