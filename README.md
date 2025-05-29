@@ -46,6 +46,7 @@ Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, o
 
 
 https://github.com/user-attachments/assets/ab3f4465-63c1-4ee6-be89-6d4db520875a 
+
 https://github.com/user-attachments/assets/3408003b-66a1-4e0f-9eae-0ced117c43fe
 
 
