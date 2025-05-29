@@ -1,9 +1,8 @@
-# FreeRTOS
-## Introduction
+# Introduction
 The "Smart Aquarium System" is an aquarium automation solution, using FreeRTOS to coordinate tasks on the microcontroller.
 
 The system integrates sensors and devices to monitor and control the aquarium environment, with the following main features:
-
+## How the System Works
 DS18B20 temperature sensor: Measures water temperature, controls the heating lamp according to the threshold:
 - Temperature < 30°C: PWM heating lamp = 255 (strong).
 - 30°C ≤ Temperature < 32°C: PWM = 100 (medium).
@@ -19,17 +18,17 @@ RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds a
 Operation mode:
 - Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
 - Manual (MANUAL): User controls directly via push button, switches device status (OFF → WEAK → STRONG → OFF).
-## How the System Works
-### System Overview:
-FreeRTOS:
+### FreeRTOS
+
 SensorTask: Reads sensor data every 500ms, sends via queue.
 
 ControlTask: Processes control logic, receives commands from push button via interrupt and queue.
+
 DisplayTask: Display information (time, temperature, turbidity, status) on OLED every 200ms.
 
 SerialPrintTask: Print information via Serial for monitoring every 1 second.
 
-RainMaker App
+## RainMaker App
 
 Users can switch AUTO/MANUAL mode, turn on/off the filter motor, heating lamp, or activate feeding via the RainMaker app on iOS/Android.
 
