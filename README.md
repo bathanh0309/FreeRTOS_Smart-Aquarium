@@ -17,9 +17,8 @@ Turbidity sensor: Measures water clarity, controls the filter motor:
 RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds at 11:00 every day, not repeating on the same day.
 
 Operation mode:
-Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
-
-Manual (MANUAL): User controls directly via push button, switches device status (OFF → WEAK → STRONG → OFF).
+- Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
+- Manual (MANUAL): User controls directly via push button, switches device status (OFF → WEAK → STRONG → OFF).
 ## How the System Works
 ### System Overview:
 FreeRTOS:
