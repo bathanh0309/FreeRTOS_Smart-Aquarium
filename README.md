@@ -51,6 +51,8 @@ https://github.com/user-attachments/assets/8d7514b6-308d-45bb-afe0-62e412b6e779
 **use-case-diagram**
 ![image](usecasediagram.jpg)
 
+**timing-diagram**
+![image](timing.jpg)
 
 
 
