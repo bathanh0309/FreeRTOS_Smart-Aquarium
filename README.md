@@ -18,15 +18,12 @@ RTC DS3231: Automatically activates the feeding motor (PWM = 25) for 5 seconds a
 Operation mode:
 - Automatic (AUTO): Controls filtration, heating, and feeding based on sensor data and time.
 - Manual (MANUAL): User controls directly via push button, switches device status (OFF → WEAK → STRONG → OFF).
-### FreeRTOS
+## FreeRTOS
 
-SensorTask: Reads sensor data every 500ms, sends via queue.
-
-ControlTask: Processes control logic, receives commands from push button via interrupt and queue.
-
-DisplayTask: Display information (time, temperature, turbidity, status) on OLED every 200ms.
-
-SerialPrintTask: Print information via Serial for monitoring every 1 second.
+- SensorTask: Reads sensor data every 500ms, sends via queue.
+- ControlTask: Processes control logic, receives commands from push button via interrupt and queue.
+- DisplayTask: Display information (time, temperature, turbidity, status) on OLED every 200ms.
+- SerialPrintTask: Print information via Serial for monitoring every 1 second.
 
 ## RainMaker App
 
