@@ -10,16 +10,18 @@ FreeRTOS is an open source, lightweight real-time operating system designed to m
 The system supports two modes: AUTO & MANUAL
 
 AUTO (automatically adjusts filtration and heating based on sensor thresholds and automatically feeds fish at set times)
-PWM (Pulse-width modulation)
-Turbidity Sensor
+
+PWM: Turbidity Sensor
 -  (3000 < sensor) PWM = 0: filter motor OFF
 -  (2000 < sensor < 3000) PWM = 100: medium filter motor
 -  (sensor < 2000) PWM = 255 high filter motor
-Water Temperature Sensor DS18B20
+
+PWM Water Temperature Sensor DS18B20
 -  (32 < sensor) PWM = 0: heater motor OFF
 -  (30 < sensor < 32) PWM = 100: medium heater motor
 -  (sensor < 30) PWM = 0: high heater motor
-Timer Sensor DS3231
+
+PWM Timer Sensor DS3231
 -  Setup 11h: PWM = 25: feeding motor rotates in 5s
   
 MANUAL (user controls directly via push button)
