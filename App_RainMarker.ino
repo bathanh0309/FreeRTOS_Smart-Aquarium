@@ -6,47 +6,37 @@
 #include <freertos/task.h>
 #include <freertos/queue.h>
 
-
-//---------------------------------------------------
 const char *service_name = "ESP_C3_Device";
-const char *pop = "12345678";  // Proof of Possession
-//---------------------------------------------------
+const char *pop = "12345678";  
+
 #define EEPROM_SIZE 4
-//---------------------------------------------------
-// Device names
+
 char device1[] = "Den";
 char device2[] = "Cho an";
 char device3[] = "Loc";
-//---------------------------------------------------
-// GPIO settings
+
 static uint8_t RELAY_1 = 3;
 static uint8_t RELAY_2 = 10;
 static uint8_t RELAY_3 = 1;
-static uint8_t WIFI_LED = 2;    // Built-in LED
-static uint8_t gpio_reset = 0;  // Reset button
-//---------------------------------------------------
-// Relay states
+static uint8_t WIFI_LED = 2;    
+static uint8_t gpio_reset = 0;  
+
 bool STATE_RELAY_1 = LOW;
 bool STATE_RELAY_2 = LOW;
 bool STATE_RELAY_3 = LOW;
-//---------------------------------------------------
+
 static Switch my_switch1(device1, &RELAY_1);
 static Switch my_switch2(device2, &RELAY_2);
 static Switch my_switch3(device3, &RELAY_3);
-//---------------------------------------------------
-// Queue for relay control
+
 QueueHandle_t relayQueue;
 
-
-// Structure to hold relay control data
 struct RelayCommand {
   int relay_no;
   int relay_pin;
   bool status;
 };
 
-
-//---------------------------------------------------
 void sysProvEvent(arduino_event_t *sys_event) {
   switch (sys_event->event_id) {
     case ARDUINO_EVENT_PROV_START:
@@ -91,7 +81,6 @@ void control_relay(int relay_no, int relay_pin, boolean status) {
 }
 
 
-// Task to handle relay control from queue
 void RelayControlTask(void *pvParameters) {
   RelayCommand cmd;
   while (1) {
@@ -101,8 +90,6 @@ void RelayControlTask(void *pvParameters) {
   }
 }
 
-
-// Task to monitor reset button
 void ResetButtonTask(void *pvParameters) {
   while (1) {
     if (digitalRead(gpio_reset) == LOW) {
@@ -127,7 +114,6 @@ void ResetButtonTask(void *pvParameters) {
 }
 
 
-// Task to monitor WiFi status
 void WiFiStatusTask(void *pvParameters) {
   while (1) {
     if (WiFi.status() != WL_CONNECTED) {
@@ -140,14 +126,13 @@ void WiFiStatusTask(void *pvParameters) {
 }
 
 
-// New task to monitor relay states
 void MonitorRelayTask(void *pvParameters) {
   while (1) {
     Serial.printf("Relay States: Den=%s, Cho an=%s, Loc=%s\n",
                   STATE_RELAY_1 ? "ON" : "OFF",
                   STATE_RELAY_2 ? "ON" : "OFF",
                   STATE_RELAY_3 ? "ON" : "OFF");
-    vTaskDelay(5000 / portTICK_PERIOD_MS); // Print every 5 seconds
+    vTaskDelay(5000 / portTICK_PERIOD_MS); 
   }
 }
 
@@ -156,8 +141,6 @@ void setup() {
   Serial.begin(115200);
   EEPROM.begin(EEPROM_SIZE);
 
-
-  // Initialize pins
   pinMode(RELAY_1, OUTPUT);
   pinMode(RELAY_2, OUTPUT);
   pinMode(RELAY_3, OUTPUT);
@@ -170,16 +153,12 @@ void setup() {
   digitalWrite(RELAY_3, !STATE_RELAY_3);
   digitalWrite(WIFI_LED, LOW);
 
-
-  // Create queue for relay commands
   relayQueue = xQueueCreate(10, sizeof(RelayCommand));
   if (relayQueue == NULL) {
     Serial.println("Failed to create queue");
     return;
   }
 
-
-  // Initialize RainMaker
   Node my_node = RMaker.initNode("Tech Trends Shameer");
   my_switch1.addCb(write_callback);
   my_node.addDevice(my_switch1);
@@ -217,7 +196,6 @@ void setup() {
   );
 
 
-  // Restore relay states from EEPROM
   STATE_RELAY_1 = EEPROM.read(0);
   digitalWrite(RELAY_1, STATE_RELAY_1);
   my_switch1.updateAndReportParam(ESP_RMAKER_DEF_POWER_NAME, STATE_RELAY_1);
@@ -236,7 +214,6 @@ void setup() {
   Serial.printf("Relay3 is %s\n", STATE_RELAY_3 ? "ON" : "OFF");
 
 
-  // Create FreeRTOS tasks
   xTaskCreate(RelayControlTask, "RelayControlTask", 2048, NULL, 5, NULL);
   xTaskCreate(ResetButtonTask, "ResetButtonTask", 2048, NULL, 4, NULL);
   xTaskCreate(WiFiStatusTask, "WiFiStatusTask", 2048, NULL, 3, NULL);
@@ -245,6 +222,6 @@ void setup() {
 
 
 void loop() {
-  // Empty: FreeRTOS handles tasks
+
 }
 
